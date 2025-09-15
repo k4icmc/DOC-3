@@ -1,351 +1,347 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documento HTML Detalhado com CSS e JavaScript</title>
-    <style>
-        /* Reset básico para consistência */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Conteúdo Protegido por Senha Data</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
+  /* Background gradient with dark colors and blue-purple */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #eee;
+    overflow-x: hidden;
+  }
 
-        /* Estilos para o cabeçalho */
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+  /* Particle canvas full screen behind everything */
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0; left: 0;
+  }
 
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+  /* Main container centered */
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    margin: 5vh auto 3vh auto;
+    background: linear-gradient(145deg, #1a1a2e, #2e2e4d);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(70, 50, 150, 0.7);
+    padding: 2rem 2.5rem;
+    color: #cbd5e1;
+    transition: height 0.3s ease;
+    word-wrap: break-word;
+  }
 
-        header p {
-            font-size: 1.2em;
-        }
+  /* Text content area that grows/shrinks with text */
+  #content {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    min-height: 80px;
+  }
 
-        /* Estilos para a navegação */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
+  /* Input container */
+  .input-area {
+    margin: 2rem auto 1.5rem auto;
+    max-width: 320px;
+    text-align: center;
+  }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #a3a9f7;
+    text-shadow: 0 0 5px #6b6fff;
+  }
 
-        nav ul li {
-            margin: 0 15px;
-        }
+  /* Input with dark background and blue-purple border */
+  #passwordInput {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #6b6fff;
+    background: #1a1a2e;
+    color: #cbd5e1;
+    letter-spacing: 0.15em;
+    text-align: center;
+    outline-offset: 2px;
+    outline-color: #6b6fff;
+    transition: border-color 0.3s ease;
+  }
+  #passwordInput:focus {
+    border-color: #a3a9f7;
+    box-shadow: 0 0 8px #a3a9f7;
+  }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+  /* Hint text */
+  #hint {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #8a8fbc;
+    font-style: italic;
+    text-shadow: 0 0 3px #4b4f7f;
+  }
 
-        nav ul li a:hover {
-            background-color: #555;
-        }
+  /* Button style */
+  button {
+    display: block;
+    margin: 1.5rem auto 0 auto;
+    background: linear-gradient(135deg, #6b6fff, #a36bff);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 15px #6b6fff;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  button:hover, button:focus {
+    background: linear-gradient(135deg, #a36bff, #6b6fff);
+    box-shadow: 0 0 25px #a36bff;
+    outline: none;
+  }
 
-        /* Estilos para a seção principal */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+  /* Hidden content area */
+  #protectedContent {
+    margin-top: 2rem;
+    background: linear-gradient(145deg, #2e2e4d, #1a1a2e);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 20px rgba(163, 107, 255, 0.7);
+    color: #d0d0ff;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
 
-        section {
-            margin-bottom: 30px;
-        }
+  /* Link button inside protected content */
+  #linkButton {
+    margin-top: 1.8rem;
+    background: linear-gradient(135deg, #4a4aff, #7a4aff);
+    padding: 0.7rem 3rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px #7a4aff;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  #linkButton:hover, #linkButton:focus {
+    background: linear-gradient(135deg, #7a4aff, #4a4aff);
+    box-shadow: 0 0 25px #7a4aff;
+    outline: none;
+  }
 
-        section h2 {
-            color: #4CAF50;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Estilos para botões */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin: 5px;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-
-        .btn-secondary {
-            background-color: #2196F3;
-        }
-
-        .btn-secondary:hover {
-            background-color: #1e87d9;
-        }
-
-        .btn-danger {
-            background-color: #f44336;
-        }
-
-        .btn-danger:hover {
-            background-color: #da190b;
-        }
-
-        /* Estilos para o formulário */
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        /* Estilos para a lista de tarefas */
-        #todo-list {
-            list-style: none;
-        }
-
-        #todo-list li {
-            background-color: #f9f9f9;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        #todo-list li button {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Estilos para o contador */
-        #counter {
-            font-size: 2em;
-            text-align: center;
-            margin: 20px 0;
-            color: #4CAF50;
-        }
-
-        /* Estilos para o modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-    </style>
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      margin: 3vh 1rem 3vh 1rem;
+      padding: 1.5rem 1.5rem;
+      max-width: 90vw;
+    }
+    #passwordInput {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+    }
+    button, #linkButton {
+      font-size: 1rem;
+      padding: 0.6rem 2rem;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo ao Meu Documento Interativo</h1>
-        <p>Este é um exemplo detalhado de HTML, CSS e JavaScript com botões, formulários, modais e mais!</p>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#secao1">Seção 1</a></li>
-            <li><a href="#secao2">Seção 2</a></li>
-            <li><a href="#secao3">Seção 3</a></li>
-        </ul>
-    </nav>
+<!-- Particle background container -->
+<div id="particles-js"></div>
 
-    <main>
-        <section id="secao1">
-            <h2>Seção 1: Contador Interativo</h2>
-            <p>Clique nos botões para aumentar ou diminuir o contador.</p>
-            <div id="counter">0</div>
-            <button class="btn" onclick="incrementCounter()">Aumentar</button>
-            <button class="btn btn-secondary" onclick="decrementCounter()">Diminuir</button>
-            <button class="btn btn-danger" onclick="resetCounter()">Resetar</button>
-        </section>
+<div class="container" aria-live="polite">
+  <div class="input-area" id="inputArea" aria-label="Área de entrada de senha">
+    <label for="passwordInput">Digite a senha (data):</label>
+    <input type="text" id="passwordInput" inputmode="numeric" maxlength="10" aria-describedby="hint" aria-required="true" autocomplete="off" placeholder="__/__/____" />
+    <div id="hint" aria-live="polite">Essa data um dia já foi importante em 2022.</div>
+    <button id="checkBtn" aria-label="Verificar senha">Verificar</button>
+  </div>
 
-        <section id="secao2">
-            <h2>Seção 2: Lista de Tarefas</h2>
-            <p>Adicione tarefas à lista usando o formulário abaixo.</p>
-            <form id="todo-form">
-                <input type="text" id="todo-input" placeholder="Digite uma tarefa..." required>
-                <button class="btn" type="submit">Adicionar Tarefa</button>
-            </form>
-            <ul id="todo-list"></ul>
-        </section>
+  <div id="protectedContent" style="display:none;" tabindex="0" aria-live="polite" aria-label="Conteúdo protegido">
+    <div id="content"></div>
+    <button id="linkButton" aria-label="Abrir link">Abrir Link</button>
+  </div>
+</div>
 
-        <section id="secao3">
-            <h2>Seção 3: Modal de Informações</h2>
-            <p>Clique no botão para abrir um modal com mais detalhes.</p>
-            <button class="btn" id="openModalBtn">Abrir Modal</button>
-        </section>
-    </main>
+<script>
+  // Texto que você quer mostrar (coloque aqui o texto que deseja)
+  const textoProtegido = `Olá! Este é o conteúdo protegido que só pode ser visto após digitar a senha correta.
+  
+Este container cresce ou diminui conforme a quantidade de texto que você colocar aqui no código.
+  
+Você pode colocar quantas linhas quiser, e o container vai ajustar seu tamanho automaticamente.
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content fade-in">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Informações Adicionais</h2>
-            <p>Este modal foi criado com CSS e JavaScript puro. Ele aparece com uma animação de fade-in e pode ser fechado clicando no X ou fora do modal.</p>
-            <p>Você pode adicionar mais conteúdo aqui, como imagens, links ou formulários.</p>
-        </div>
-    </div>
+Aproveite o conteúdo!`;
 
-    <script>
-        // Variáveis globais
-        let counter = 0;
-        const counterElement = document.getElementById('counter');
-        const todoForm = document.getElementById('todo-form');
-        const todoInput = document.getElementById('todo-input');
-        const todoList = document.getElementById('todo-list');
-        const modal = document.getElementById('myModal');
-        const openModalBtn = document.getElementById('openModalBtn');
+  // Link que o botão deve abrir
+  const linkDestino = "https://www.exemplo.com";
 
-        // Funções para o contador
-        function incrementCounter() {
-            counter++;
-            updateCounter();
+  const senhaCorreta = "22/06/2022";
+
+  const input = document.getElementById('passwordInput');
+  const checkBtn = document.getElementById('checkBtn');
+  const protectedContent = document.getElementById('protectedContent');
+  const contentDiv = document.getElementById('content');
+  const linkButton = document.getElementById('linkButton');
+  const inputArea = document.getElementById('inputArea');
+
+  // Função para formatar automaticamente a data com barras enquanto o usuário digita só números
+  input.addEventListener('input', e => {
+    let val = input.value;
+    // Remove tudo que não for número
+    val = val.replace(/\D/g, '');
+
+    // Limita a 8 números (ddmmyyyy)
+    if(val.length > 8) val = val.slice(0,8);
+
+    // Insere as barras automaticamente
+    if(val.length > 4) {
+      val = val.replace(/^(\d{2})(\d{2})(\d{1,4}).*/, '$1/$2/$3');
+    } else if(val.length > 2) {
+      val = val.replace(/^(\d{2})(\d{1,2}).*/, '$1/$2');
+    }
+
+    input.value = val;
+  });
+
+  // Função para verificar senha
+  checkBtn.addEventListener('click', () => {
+    const val = input.value.trim();
+    if(val === senhaCorreta) {
+      // Mostrar conteúdo protegido
+      contentDiv.textContent = textoProtegido;
+      protectedContent.style.display = 'block';
+      inputArea.style.display = 'none';
+      // Focar no conteúdo para acessibilidade
+      protectedContent.focus();
+    } else {
+      alert('Senha incorreta. Tente novamente.');
+      input.focus();
+    }
+  });
+
+  // Botão para abrir o link
+  linkButton.addEventListener('click', () => {
+    window.open(linkDestino, '_blank', 'noopener');
+  });
+
+  // Acessibilidade: permitir Enter no input para disparar o botão
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      checkBtn.click();
+    }
+  });
+</script>
+
+<!-- Particles.js library and config -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  /* ParticlesJS config for subtle blue-purple particles */
+  particlesJS('particles-js',
+    {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": ["#6b6fff", "#a36bff", "#4a4aff"]
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.4,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 3,
+            "size_min": 0.5,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#6b6fff",
+          "opacity": 0.25,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false
+          }
         }
-
-        function decrementCounter() {
-            counter--;
-            updateCounter();
-        }
-
-        function resetCounter() {
-            counter = 0;
-            updateCounter();
-        }
-
-        function updateCounter() {
-            counterElement.textContent = counter;
-            counterElement.classList.add('fade-in');
-            setTimeout(() => {
-                counterElement.classList.remove('fade-in');
-            }, 1000);
-        }
-
-        // Funções para a lista de tarefas
-        todoForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            if (todoInput.value.trim() === '') return;
-
-            const li = document.createElement('li');
-            li.textContent = todoInput.value;
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Excluir';
-            deleteBtn.onclick = function() {
-                todoList.removeChild(li);
-            };
-            li.appendChild(deleteBtn);
-            todoList.appendChild(li);
-            todoInput.value = '';
-        });
-
-        // Funções para o modal
-        function openModal() {
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        openModalBtn.onclick = openModal;
-
-        // Fechar o modal clicando fora dele
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                closeModal();
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 0.4
             }
-        };
-    </script>
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    }
+  );
+</script>
+
 </body>
 </html>
