@@ -165,6 +165,12 @@
 </head>
 <body>
 
+<!-- Elemento de áudio (adicionado aqui) -->
+<audio id="backgroundMusic" loop>
+  <source src="Lukas Graham - 7 Years.mp3" type="audio/mpeg">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
+
 <div id="particles-js"></div>
 
 <div class="container" aria-live="polite">
@@ -241,8 +247,6 @@
 
       <div class="message-section">não sei se você tem duvidas ou algo do tipo porque naquela época as pessoas inventavam tanta coisa sobre mim. mas sobre eu ter ficado com outras pessoas ou algo do tipo, eu nunca te troquei por outra pessoa. nunca tive outra pessoa além de você.</div>
 
-      
-
       <div class="message-section">
         Se um dia você quiser ser minha amiga novamente, eu quero muito isso, mas se não quiser eu te entendo porque depois de tudo isso você tem motivos. Mesmo depois de tudo, você ainda significa muito para mim. Só queria que você soubesse o quanto me importo e sempre me importei.
       </div>
@@ -297,6 +301,14 @@
       protectedContent.style.display = 'block';
       inputArea.style.display = 'none';
       protectedContent.focus();
+      
+      // Tocar a música quando a senha estiver correta
+      const music = document.getElementById('backgroundMusic');
+      music.volume = 0.7; // Volume em 70%
+      music.play().catch(error => {
+        console.log('Reprodução automática prevenida:', error);
+        // Alguns navegadores bloqueiam reprodução automática
+      });
     } else {
       alert('Senha incorreta. Tente novamente.');
       input.focus();
@@ -365,7 +377,7 @@
           "direction": "none",
           "random": false,
           "straight": false,
-          "out_mode": "out",
+          "out_mode": 'out',
           "bounce": false,
           "attract": {
             "enable": false
